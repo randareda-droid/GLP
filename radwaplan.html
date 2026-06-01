@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>خطة غذائية - الأستاذة رضوى</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;600;700&family=Tajawal:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f8f5ee;
+    --paper-2:#fffdf8;
+    --ink:#2c2a24;
+    --ink-soft:#5b574c;
+    --green:#2f5d50;
+    --green-deep:#234a3f;
+    --green-soft:#e7efe9;
+    --green-line:#cdddd3;
+    --gold:#b3924f;
+    --gold-soft:#e9dcbf;
+    --rose:#a4584f;
+    --rose-soft:#f4e6e2;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(circle at 12% 8%, rgba(179,146,79,.06), transparent 40%),
+      radial-gradient(circle at 88% 92%, rgba(47,93,80,.06), transparent 45%),
+      var(--paper);
+    color:var(--ink);
+    font-family:'Tajawal',sans-serif;
+    line-height:1.85;
+    padding:32px 16px 60px;
+  }
+  .sheet{
+    max-width:920px;margin:0 auto;
+    background:var(--paper-2);
+    border:1px solid var(--green-line);
+    border-radius:14px;
+    box-shadow:0 18px 50px -20px rgba(35,74,63,.35);
+    overflow:hidden;
+  }
+
+  /* ===== Letterhead ===== */
+  .head{
+    padding:26px 34px 22px;
+    background:linear-gradient(135deg,var(--green-deep),var(--green));
+    color:#f6f3ea;
+    position:relative;
+  }
+  .head::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;
+    background:linear-gradient(90deg,var(--gold),var(--gold-soft),var(--gold));}
+  .head-grid{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:flex-start;}
+  .head .ar{font-family:'El Messiri',serif;text-align:right;}
+  .head .ar .name{font-size:1.5rem;font-weight:700;letter-spacing:.5px;}
+  .head .ar .sub{font-size:.92rem;opacity:.9;font-family:'Tajawal';font-weight:300;}
+  .head .en{font-family:'Cormorant Garamond',serif;text-align:left;direction:ltr;font-size:1rem;line-height:1.5;opacity:.95;}
+  .head .en .name{font-size:1.25rem;font-weight:600;letter-spacing:.4px;}
+  .monogram{
+    width:46px;height:46px;border-radius:50%;border:1.5px solid var(--gold-soft);
+    display:flex;align-items:center;justify-content:center;font-family:'El Messiri';
+    font-weight:700;color:var(--gold-soft);font-size:1.1rem;flex:none;margin-top:4px;
+  }
+
+  /* ===== Title ===== */
+  .title{
+    text-align:center;padding:30px 24px 8px;
+  }
+  .title h1{font-family:'El Messiri',serif;color:var(--green-deep);font-size:1.85rem;font-weight:700;}
+  .title .pt{color:var(--gold);font-weight:600;font-size:1.15rem;margin-top:2px;}
+  .rule{width:90px;height:3px;margin:14px auto 0;border-radius:3px;
+    background:linear-gradient(90deg,var(--gold),var(--green));}
+
+  .body{padding:8px 34px 30px;}
+
+  /* ===== Patient card ===== */
+  .card{
+    background:var(--green-soft);border:1px solid var(--green-line);
+    border-radius:12px;padding:18px 22px;margin:22px 0;
+  }
+  .card h2{font-family:'El Messiri';color:var(--green-deep);font-size:1.15rem;margin-bottom:10px;
+    display:flex;align-items:center;gap:8px;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{background:var(--paper-2);border:1px solid var(--green-line);border-radius:20px;
+    padding:5px 14px;font-size:.9rem;color:var(--ink-soft);}
+  .chip b{color:var(--green-deep);}
+
+  /* ===== Sections ===== */
+  section{margin:26px 0;}
+  h2.sec{font-family:'El Messiri';color:var(--green-deep);font-size:1.3rem;
+    display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+  h2.sec .ic{width:34px;height:34px;border-radius:9px;background:var(--green-soft);
+    display:inline-flex;align-items:center;justify-content:center;font-size:1.1rem;flex:none;}
+  .lead{color:var(--ink-soft);margin-bottom:10px;}
+  ul.tips{list-style:none;}
+  ul.tips li{position:relative;padding:6px 26px 6px 0;color:var(--ink);}
+  ul.tips li::before{content:"";position:absolute;right:6px;top:16px;width:7px;height:7px;
+    border-radius:50%;background:var(--gold);}
+  ul.tips li b{color:var(--green-deep);}
+
+  .note{border-right:4px solid var(--gold);background:#fbf6ea;border-radius:8px;
+    padding:12px 16px;color:var(--ink-soft);margin-top:12px;font-size:.95rem;}
+  .note b{color:var(--gold);}
+
+  .care{border-right:4px solid var(--rose);background:var(--rose-soft);}
+  .care b{color:var(--rose);}
+
+  /* ===== Birthday block ===== */
+  .birthday{
+    background:linear-gradient(135deg,#fff,#fbf3e6);
+    border:1.5px dashed var(--gold);border-radius:14px;padding:20px 24px;
+  }
+  .birthday h2{color:var(--gold);}
+
+  /* ===== Table ===== */
+  .table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--green-line);
+    margin-top:8px;-webkit-overflow-scrolling:touch;}
+  table{width:100%;border-collapse:collapse;min-width:760px;text-align:right;direction:rtl;}
+  thead th{background:linear-gradient(135deg,var(--green-deep),var(--green));color:#f6f3ea;
+    font-family:'El Messiri';font-weight:600;font-size:1rem;padding:13px 12px;}
+  thead th.dayh{background:var(--gold);color:#3a2f15;width:88px;}
+  tbody td{padding:12px 12px;font-size:.92rem;vertical-align:top;border-top:1px solid var(--green-line);}
+  tbody td.day{font-family:'El Messiri';font-weight:700;color:var(--green-deep);
+    background:var(--green-soft);text-align:center;font-size:1rem;}
+  tbody tr:nth-child(even) td:not(.day){background:#fbf9f3;}
+  tbody td.snack{color:var(--ink-soft);background:#fcf7ec;}
+  .bd-row td{background:linear-gradient(135deg,#fff8ec,#fdf0db)!important;}
+  .bd-row td.day{background:var(--gold)!important;color:#3a2f15!important;}
+  .tag{display:inline-block;background:var(--gold-soft);color:#5a481e;border-radius:6px;
+    padding:1px 8px;font-size:.72rem;font-weight:700;margin-bottom:4px;}
+
+  /* ===== Footer ===== */
+  .foot{margin-top:34px;border-top:2px solid var(--green-line);padding-top:18px;
+    display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:center;}
+  .foot .ar{font-family:'El Messiri';color:var(--green-deep);text-align:right;}
+  .foot .ar .name{font-weight:700;font-size:1.05rem;}
+  .foot .ar .sub{font-family:'Tajawal';font-weight:300;font-size:.82rem;color:var(--ink-soft);}
+  .foot .en{font-family:'Cormorant Garamond',serif;direction:ltr;text-align:left;font-size:.92rem;color:var(--ink-soft);}
+  .signoff{text-align:center;color:var(--gold);font-family:'El Messiri';margin-top:18px;font-size:1.05rem;}
+
+  @media (max-width:560px){
+    body{padding:14px 6px 40px;}
+    .body{padding:6px 16px 22px;}
+    .head{padding:18px;}
+    .head .ar .name{font-size:1.2rem;}
+    .title h1{font-size:1.4rem;}
+  }
+  @media print{
+    body{background:#fff;padding:0;}
+    .sheet{box-shadow:none;border:none;}
+    .table-wrap{overflow:visible;}
+    section,.card,.birthday{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <!-- Letterhead -->
+  <header class="head">
+    <div class="head-grid">
+      <div class="ar">
+        <div class="name">أ.د. رنــده رضــا مبـروك</div>
+        <div class="sub">عضو مؤسس المجلس العلمي للتغذية الإكلينيكية</div>
+        <div class="sub">كلية الطب – جامعة عين شمس</div>
+      </div>
+      <div class="monogram">RR</div>
+      <div class="en">
+        <div class="name">Professor Randa Reda Mabrouk</div>
+        <div>Founding Member, Clinical Nutrition Board</div>
+        <div>Faculty of Medicine, Ain Shams</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Title -->
+  <div class="title">
+    <h1>خطة نظام غذائي لمدة 7 أيام</h1>
+    <div class="pt">مُقدَّمة إلى الأستاذة رضوى</div>
+    <div class="rule"></div>
+  </div>
+
+  <div class="body">
+
+    <!-- Patient summary -->
+    <div class="card">
+      <h2>🩺 ملخص الحالة</h2>
+      <div class="chips">
+        <span class="chip"><b>السن:</b> 26 سنة</span>
+        <span class="chip"><b>مونجارو:</b> 2.5 مجم ← الانتقال إلى 5 مجم أسبوعيًا</span>
+        <span class="chip"><b>النزول:</b> 4 كجم في أول شهر 👏</span>
+        <span class="chip"><b>السعرات:</b> 1000–1200 سعر/اليوم</span>
+        <span class="chip"><b>فيتامين د:</b> منخفض – 50,000 وحدة أسبوعيًا</span>
+        <span class="chip"><b>ملاحظات:</b> إمساك • ركبتان حساستان • تفضّل السلمون</span>
+      </div>
+    </div>
+
+    <p class="lead">مبروك النتيجة الجميلة في أول شهر يا رضوى 🌿 مع زيادة الجرعة إلى 5 مجم ممكن تزيد الشهية تقل أكتر ويبطّأ الهضم شوية، فالخطة دي مصمّمة تحافظ على نزولك بثبات، تحمي عضلاتك بالبروتين، وتظبط الإمساك من خلال الأكل قبل أي حاجة تانية.</p>
+
+    <!-- General guidelines -->
+    <section>
+      <h2 class="sec"><span class="ic">📌</span> إرشادات عامة هامة</h2>
+      <ul class="tips">
+        <li><b>بروتين في كل وجبة:</b> عنصر أساسي للحفاظ على الكتلة العضلية، الشبع لفترة أطول، وثبات السكر في الدم — خصوصًا مع المونجارو.</li>
+        <li><b>تقسيم الوجبات:</b> وجبات صغيرة متكررة بدل الوجبات الكبيرة لتجنّب الثقل والارتجاع وبطء الهضم.</li>
+        <li><b>امضغي الطعام جيدًا وببطء:</b> يساعد على الهضم مع تباطؤ حركة المعدة بسبب المونجارو.</li>
+        <li><b>الماء:</b> 2–2.5 لتر يوميًا، ويفضّل شربه بين الوجبات وليس أثناءها.</li>
+        <li><b>تجنّب المحفزات:</b> قلّلي التوابل الحريفة، الثوم والبصل النيئ، والمقليات.</li>
+      </ul>
+      <div class="note"><b>ملاحظة إكلينيكية:</b> عند سقف 1000–1200 سعر يوميًا مع المونجارو، الأولوية للبروتين الكافي وفيتامين د، مع متابعة الوزن والأعراض كل أسبوعين لضبط الجرعة والخطة.</div>
+    </section>
+
+    <!-- Constipation -->
+    <section>
+      <h2 class="sec"><span class="ic">🌾</span> برنامج علاج الإمساك</h2>
+      <p class="lead">المونجارو بيبطّأ حركة الأمعاء، فالإمساك متوقع — لكن الأكل الصح بيعالجه. اتبعي ده يوميًا:</p>
+      <ul class="tips">
+        <li><b>كوب ماء دافئ بالليمون</b> على الريق أول ما تصحي — منبّه طبيعي للأمعاء.</li>
+        <li><b>ملعقة بذور كتان مطحونة + ملعقة بذور شيا</b> على الزبادي أو الشوفان يوميًا.</li>
+        <li><b>3–4 حبات قراصيا (برقوق مجفف) منقوعة</b> كسناك — مُليّن طبيعي فعّال.</li>
+        <li><b>خضار ورقي وألياف:</b> جرجير، سبانخ، خس، بامية، بطاطا حلوة بقشرها — كلها تُليّن الأمعاء.</li>
+        <li><b>فاكهة بقشرها:</b> الكمثرى، التفاح، والكيوي ممتازة للحركة المعوية.</li>
+        <li><b>بروبيوتيك يوميًا:</b> الزبادي واللبن الرايب لدعم بكتيريا الأمعاء النافعة.</li>
+        <li><b>حركة بسيطة بعد الأكل:</b> مشي خفيف 10 دقائق يساعد الهضم.</li>
+      </ul>
+      <div class="note care"><b>قلّلي:</b> الأرز الأبيض بكميات كبيرة، الموز غير الناضج، الجبن الصلب بكثرة، الخبز الأبيض والمعجنات، والشاي/القهوة من غير ماء كافٍ — كلها تزيد الإمساك.</div>
+    </section>
+
+    <!-- Vitamin D -->
+    <section>
+      <h2 class="sec"><span class="ic">☀️</span> فيتامين د</h2>
+      <ul class="tips">
+        <li>استمري على <b>50,000 وحدة أسبوعيًا</b> كما وصفها الطبيب، ويفضّل تناولها مع وجبة بها دهون صحية لتحسين الامتصاص.</li>
+        <li><b>السلمون</b> من أغنى المصادر الغذائية بفيتامين د — وده مناسب جدًا لذوقك ومضمّن في الخطة 👌</li>
+        <li>مصادر إضافية: صفار البيض، والجبن — مع تعريض بسيط للشمس يوميًا.</li>
+      </ul>
+    </section>
+
+    <!-- Exercise -->
+    <section>
+      <h2 class="sec"><span class="ic">🏊‍♀️</span> رياضة لطيفة على الركبة</h2>
+      <p class="lead">عشان ركبتيك حساستين، نبعد عن أي مجهود يضغط عليهم (جري/قفز/سلالم)، ونختار تمارين بسيطة قليلة الأثر — بعد استشارة الطبيب:</p>
+      <ul class="tips">
+        <li><b>السباحة أو التمارين المائية:</b> الأفضل على الإطلاق — الماء بيشيل الحمل عن الركبة.</li>
+        <li><b>عجلة ثابتة</b> بمقاومة خفيفة لتقوية العضلات حول الركبة بأمان.</li>
+        <li><b>مشي على أرض مستوية</b> 20–30 دقيقة، وتمارين مقاومة خفيفة بالأستك المطاطي وأنتِ جالسة.</li>
+        <li>تمارين تقوية عضلة الفخذ الأمامية بلطف تدعم الركبة وتقلّل الألم.</li>
+      </ul>
+    </section>
+
+    <!-- Birthday sushi -->
+    <section class="birthday">
+      <h2 class="sec"><span class="ic">🎂</span> يوم عيد ميلادك — السوشي بالسلمون</h2>
+      <p class="lead">كل سنة وإنتِ طيبة يا رضوى 🎉 السوشي بالسلمون اختيار ممتاز — بروتين خفيف، أوميجا 3، وغني بفيتامين د. خلّي الخيارات صح:</p>
+      <ul class="tips">
+        <li>اختاري <b>ساشيمي أو نيجيري سلمون</b> من مكان موثوق وطازج. لو قلقانة من النيء، فيه سلمون <b>مطهي أو مدخّن</b> مناسب جدًا.</li>
+        <li><b>6–8 قطع كفاية</b> — أرز السوشي نشويات، فخليه باعتدال داخل سقف السعرات.</li>
+        <li>قلّلي <b>صوص الصويا</b> (صوديوم عالي) واستخدمي القليل، ويفضّل قليل الملح.</li>
+        <li>تجنّبي <b>اللفائف المقلية (تمبورا)</b> أو اللي فيها مايونيز/صوص حار كتير — سعرات عالية ومحفّزات للمعدة.</li>
+        <li>الزنجبيل المخلل كويس للهضم، والواسابي بكمية بسيطة.</li>
+        <li><b>كلي ببطء وامضغي كويس</b> — مهم جدًا مع المونجارو لأن المعدة بتفضل مليانة لفترة أطول.</li>
+      </ul>
+    </section>
+
+    <!-- 7-day table -->
+    <section>
+      <h2 class="sec"><span class="ic">🍽️</span> جدول الـ 7 أيام</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th class="dayh">اليوم</th>
+              <th>وجبة أولى</th>
+              <th>وجبة ثانية</th>
+              <th>وجبة ثالثة</th>
+              <th>سناك (اختياري)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="day">الأول</td>
+              <td>3 ملاعق فول مدمس (بزيت زيتون وليمون) + ربع رغيف بلدي + خيار مقشّر.</td>
+              <td>سلمون مشوي + سلطة خضراء (جرجير وخس) + بطاطا حلوة صغيرة مشوية.</td>
+              <td>كوب زبادي + ملعقة بذور كتان مطحونة + ثمرة كيوي.</td>
+              <td class="snack">4 حبات قراصيا منقوعة.</td>
+            </tr>
+            <tr>
+              <td class="day">الثاني</td>
+              <td>بيضة مسلوقة + جبن قريش + جرجير + ربع رغيف بلدي.</td>
+              <td>صدر دجاج مشوي (بدون جلد) + بامية مطبوخة + 3 ملاعق أرز.</td>
+              <td>كوب لبن رايب + ثمرة خيار.</td>
+              <td class="snack">حفنة مكسرات نيئة + ثمرة تفاح بقشرها.</td>
+            </tr>
+            <tr>
+              <td class="day">الثالث</td>
+              <td>شوفان مطبوخ باللبن + ملعقة بذور شيا + قطع فراولة/توت.</td>
+              <td>سلمون مشوي + سلطة خضراء + 3 ملاعق أرز بسمتي.</td>
+              <td>قطعة جبن قريش بزيت الزيتون والزعتر + خيار.</td>
+              <td class="snack">ثمرة كمثرى بقشرها.</td>
+            </tr>
+            <tr>
+              <td class="day">الرابع</td>
+              <td>شكشوكة (بيض مع طماطم وفلفل رومي بملعقة زيت زيتون) + ربع رغيف بلدي.</td>
+              <td>2 قطعة لحم صغيرة مشوية + سلطة خضراء (بدون بصل/فلفل حار) + ربع رغيف بلدي.</td>
+              <td>كوب زبادي + ملعقة بذور كتان + ثمرة خيار.</td>
+              <td class="snack">خيار أو جزر + 5 حبات زيتون.</td>
+            </tr>
+            <tr>
+              <td class="day">الخامس</td>
+              <td>3 ملاعق فول بزيت الزيتون + جبن قريش + جرجير + ربع رغيف بلدي.</td>
+              <td>صدر دجاج مشوي + ملوخية (بدون طشة ثوم قوية) + 3 ملاعق أرز أبيض.</td>
+              <td>كوب زبادي + ثمرة موز صغيرة ناضجة.</td>
+              <td class="snack">شريحة شمام أو كانتالوب.</td>
+            </tr>
+            <tr>
+              <td class="day">السادس</td>
+              <td>بيضة مسلوقة + قطعة جبن أبيض ملح خفيف + خيار + ربع رغيف أسمر.</td>
+              <td>سلمون مشوي بالفرن + سلطة خضراء + 3 ملاعق مكرونة مسلوقة.</td>
+              <td>قطعة جبن قريش بزيت الزيتون والزعتر + خيار.</td>
+              <td class="snack">كوب ترمس مسلوق (بدون ملح كثير).</td>
+            </tr>
+            <tr class="bd-row">
+              <td class="day">السابع</td>
+              <td><span class="tag">يوم عيد الميلاد 🎂</span>كوب زبادي + ملعقة بذور كتان + ثمرة كيوي (وجبة خفيفة قبل الخروج).</td>
+              <td><span class="tag">احتفال</span>سوشي / ساشيمي سلمون (6–8 قطع) + حساء ميزو + سلطة وكامي.</td>
+              <td>كوب لبن رايب + ثمرة خيار.</td>
+              <td class="snack">ثمرة تفاح بقشرها.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">القراصيا، بذور الكتان، الخضار الورقي، والفاكهة بقشرها مدمجين على مدار الأسبوع لعلاج الإمساك. السلمون متكرر كمصدر بروتين تحبينه وغني بفيتامين د.</div>
+    </section>
+
+    <div class="signoff">❦ صحة وسعادة دائمة ❦</div>
+
+    <!-- Footer letterhead -->
+    <div class="foot">
+      <div class="ar">
+        <div class="name">أ.د. رنــده رضــا مبـروك</div>
+        <div class="sub">عضو مؤسس المجلس العلمي للتغذية الإكلينيكية – كلية الطب، جامعة عين شمس</div>
+      </div>
+      <div class="en">
+        <div>Prof. Randa Reda Mabrouk</div>
+        <div>Clinical Nutrition Board · Ain Shams</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
