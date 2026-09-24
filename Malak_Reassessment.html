@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إعادة تقييم ملك شافعي | Malak Shafi — Reassessment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#fbf7f0; --sand:#f3ead9; --olive:#5c6b4a; --olive-deep:#3f4a33;
+    --blush:#d98a73; --blush-soft:#f2d7cd; --gold:#c8a35b; --ink:#33352e;
+    --muted:#8a8675; --white:#fff;
+    --shadow:0 18px 45px -20px rgba(63,74,51,.45); --radius:22px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Cairo','Poppins',sans-serif;
+    background:
+      radial-gradient(circle at 12% 10%, #fff 0, transparent 38%),
+      radial-gradient(circle at 88% 0%, var(--blush-soft) 0, transparent 30%),
+      radial-gradient(circle at 50% 120%, var(--sand) 0, transparent 55%),
+      var(--cream);
+    color:var(--ink); line-height:1.9; padding:26px 14px 70px; min-height:100vh;
+  }
+  body.lang-en{font-family:'Poppins',sans-serif}
+  .wrap{max-width:680px;margin:0 auto}
+
+  .lang-switch{display:flex;justify-content:center;gap:8px;margin-bottom:14px}
+  .lang-switch button{
+    border:1.5px solid var(--olive);background:#fff;color:var(--olive-deep);
+    font-family:inherit;font-weight:700;font-size:13.5px;padding:8px 18px;
+    border-radius:99px;cursor:pointer;transition:.2s;
+  }
+  .lang-switch button.active{background:var(--olive);color:#fff;box-shadow:0 6px 14px -6px rgba(92,107,74,.7)}
+
+  /* HERO — amber/warm tone to signal follow-up vs first visit */
+  .hero{
+    background:linear-gradient(150deg,#7a5c2e,#c8a35b);
+    color:#fff;border-radius:var(--radius);padding:42px 30px 38px;text-align:center;
+    box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .hero::before{content:"";position:absolute;inset:0;opacity:.13;
+    background:radial-gradient(circle at 20% 20%,#fff 1px,transparent 1px) 0 0/22px 22px;}
+  .hero .leaf{font-size:30px;display:block;margin-bottom:8px}
+  .hero h1{font-weight:800;font-size:26px;letter-spacing:.3px;position:relative}
+  .hero p{font-weight:300;font-size:15px;margin-top:10px;opacity:.92;position:relative;max-width:450px;margin-inline:auto}
+  .hero .by{margin-top:16px;font-size:13px;color:#ffe8b0;font-weight:600;letter-spacing:.5px;position:relative}
+
+  /* Baseline badge */
+  .baseline-badge{
+    background:linear-gradient(135deg,var(--blush-soft),#fff);
+    border:1.5px solid var(--blush);border-radius:16px;
+    padding:14px 18px;margin-top:18px;display:flex;gap:14px;align-items:flex-start;
+  }
+  .baseline-badge .bb-icon{font-size:22px;flex:none;margin-top:2px}
+  .baseline-badge .bb-text{font-size:13.5px;line-height:1.7;color:var(--ink)}
+  .baseline-badge .bb-text strong{color:var(--blush);display:block;margin-bottom:2px}
+
+  .progress-shell{position:sticky;top:10px;z-index:20;margin:18px 0 4px}
+  .progress-track{height:9px;background:var(--sand);border-radius:99px;overflow:hidden;box-shadow:inset 0 1px 3px rgba(0,0,0,.08)}
+  .progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--blush));transition:width .4s ease;border-radius:99px}
+  .progress-label{text-align:center;font-size:13px;color:var(--muted);margin-top:6px;font-weight:500}
+
+  .card{background:var(--white);border-radius:var(--radius);padding:26px 24px;margin-top:20px;box-shadow:var(--shadow);border:1px solid #efe7d8}
+  .card h2{font-weight:800;font-size:20px;color:var(--olive-deep);display:flex;align-items:center;gap:12px;margin-bottom:6px}
+  .card .num{background:var(--blush-soft);color:var(--blush);font-weight:800;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-size:18px;flex:none}
+  .card .sub{color:var(--muted);font-size:14px;margin:0 0 18px 50px}
+  body.lang-en .card .sub{margin:0 0 18px 0;margin-inline-start:50px}
+
+  .field{margin-bottom:16px}
+  .field > label{display:block;font-weight:600;margin-bottom:7px;font-size:15px}
+  .field .hint{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:4px}
+  input[type=text],input[type=number],input[type=tel],textarea,select{
+    width:100%;padding:12px 15px;border:1.5px solid #e6ddcb;border-radius:14px;
+    background:#fdfbf6;font-family:inherit;font-size:15px;color:var(--ink);transition:border .2s,box-shadow .2s}
+  input:focus,textarea:focus,select:focus{outline:none;border-color:var(--olive);box-shadow:0 0 0 4px rgba(92,107,74,.12);background:#fff}
+  textarea{resize:vertical;min-height:64px}
+  .row{display:flex;gap:14px;flex-wrap:wrap}
+  .row .field{flex:1;min-width:130px}
+
+  .chips{display:flex;flex-wrap:wrap;gap:9px}
+  .chips input{position:absolute;opacity:0;width:0;height:0}
+  .chips label{cursor:pointer;padding:9px 16px;border-radius:99px;border:1.5px solid #e6ddcb;background:#fdfbf6;font-size:14px;font-weight:600;transition:.18s;user-select:none}
+  .chips input:checked + label{background:var(--olive);color:#fff;border-color:var(--olive);box-shadow:0 6px 14px -6px rgba(92,107,74,.7);transform:translateY(-1px)}
+  .chips.blush input:checked + label{background:var(--blush);border-color:var(--blush);box-shadow:0 6px 14px -6px rgba(217,138,115,.7)}
+  .chips.gold input:checked + label{background:var(--gold);border-color:var(--gold);box-shadow:0 6px 14px -6px rgba(200,163,91,.7)}
+
+  /* Change indicator row */
+  .change-row{display:flex;gap:10px;align-items:center;margin-bottom:10px}
+  .change-row label{font-weight:600;font-size:14px;flex:1}
+  .change-chips{display:flex;gap:6px}
+  .change-chips input{position:absolute;opacity:0;width:0;height:0}
+  .change-chips label{cursor:pointer;padding:6px 13px;border-radius:99px;border:1.5px solid #e6ddcb;background:#fdfbf6;font-size:12.5px;font-weight:700;transition:.18s}
+  .change-chips input:checked + label{background:var(--blush);color:#fff;border-color:var(--blush)}
+
+  /* Comparison box */
+  .compare-box{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+  .compare-col{background:var(--sand);border-radius:14px;padding:12px 14px}
+  .compare-col.old-col{background:#f0ebe1;border:1.5px dashed #c8b896}
+  .compare-col.new-col{background:var(--blush-soft);border:1.5px solid var(--blush)}
+  .compare-col .col-title{font-size:12px;font-weight:800;color:var(--muted);margin-bottom:8px;letter-spacing:.5px;text-transform:uppercase}
+  .compare-col.new-col .col-title{color:var(--blush)}
+  .compare-col input{font-size:14px}
+
+  /* InBody compare */
+  .inbody-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+  .ib-item{border-radius:14px;padding:12px;border:1.5px solid #e6ddcb;background:#fdfbf6}
+  .ib-label{font-size:12px;color:var(--muted);font-weight:600;margin-bottom:6px}
+  .ib-row{display:flex;gap:8px}
+  .ib-row input{font-size:13px;padding:8px 10px}
+  .ib-row .old{flex:1;background:#f0ebe1;border-color:#c8b896}
+  .ib-row .new{flex:1;border-color:var(--blush)}
+
+  /* Adherence list */
+  .adh-list{display:flex;flex-direction:column;gap:10px}
+  .adh-item{border:1.5px solid #e6ddcb;border-radius:14px;background:#fdfbf6;padding:12px 15px;display:flex;align-items:center;gap:12px}
+  .adh-item label{font-weight:600;font-size:14px;flex:1;cursor:pointer}
+  .adh-chips{display:flex;gap:6px;flex-shrink:0}
+  .adh-chips input{position:absolute;opacity:0;width:0;height:0}
+  .adh-chips label{cursor:pointer;padding:5px 12px;border-radius:99px;border:1.5px solid #e6ddcb;font-size:12px;font-weight:700;transition:.18s}
+  .adh-chips input[value="✅"]:checked + label{background:#5c6b4a;color:#fff;border-color:#5c6b4a}
+  .adh-chips input[value="⚠️"]:checked + label{background:var(--gold);color:#fff;border-color:var(--gold)}
+  .adh-chips input[value="❌"]:checked + label{background:var(--blush);color:#fff;border-color:var(--blush)}
+
+  /* Lab grid */
+  .lab-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:6px}
+  .lab-item{border-radius:14px;padding:12px 14px;border:1.5px solid #e6ddcb;background:#fdfbf6}
+  .lab-name{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:6px}
+  .lab-prev{font-size:11px;color:var(--muted);margin-bottom:5px}
+  .lab-item input{font-size:13px;padding:8px 10px}
+
+  /* Barrier tags */
+  .barrier-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:8px}
+  .barrier-chip{border:1.5px solid #e6ddcb;border-radius:12px;background:#fdfbf6;padding:10px 12px;display:flex;align-items:center;gap:8px;cursor:pointer;transition:.18s}
+  .barrier-chip input{width:18px;height:18px;accent-color:var(--blush);flex:none}
+  .barrier-chip label{font-size:13.5px;font-weight:600;cursor:pointer}
+  .barrier-chip:has(input:checked){background:var(--blush-soft);border-color:var(--blush)}
+
+  /* Score ring */
+  .score-ring{display:flex;justify-content:center;margin:16px 0 8px}
+  .ring-wrap{position:relative;width:110px;height:110px}
+  .ring-wrap svg{transform:rotate(-90deg)}
+  .ring-bg{fill:none;stroke:#e6ddcb;stroke-width:10}
+  .ring-fill{fill:none;stroke:var(--gold);stroke-width:10;stroke-linecap:round;stroke-dasharray:283;stroke-dashoffset:283;transition:stroke-dashoffset .6s ease}
+  .ring-text{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .ring-num{font-size:26px;font-weight:900;color:var(--olive-deep);line-height:1}
+  .ring-lbl{font-size:11px;color:var(--muted);font-weight:600}
+
+  /* Mood meter */
+  .mood-meter{display:flex;gap:8px;justify-content:center;margin-top:8px}
+  .mood-btn{font-size:26px;cursor:pointer;padding:8px;border-radius:12px;border:2px solid transparent;transition:.18s;background:none}
+  .mood-btn.selected{border-color:var(--gold);background:var(--sand);transform:scale(1.2)}
+
+  .actions{margin-top:26px;display:flex;flex-direction:column;gap:12px}
+  .btn{border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:16px;padding:15px;border-radius:16px;transition:.2s;display:flex;align-items:center;justify-content:center;gap:10px;color:#fff}
+  .btn:hover{transform:translateY(-2px);filter:brightness(1.05)}
+  .btn-wa{background:#25a366;box-shadow:0 10px 22px -10px #25a366}
+  .btn-mail{background:var(--blush);box-shadow:0 10px 22px -10px var(--blush)}
+  .btn-print{background:var(--olive);box-shadow:0 10px 22px -10px var(--olive)}
+  .note{text-align:center;color:var(--muted);font-size:12.5px;margin-top:14px}
+
+  footer{text-align:center;color:var(--muted);font-size:12.5px;margin-top:30px;line-height:2}
+  footer b{color:var(--olive-deep)}
+
+  [data-en]{display:none}
+  body.lang-en [data-ar]{display:none}
+  body.lang-en [data-en]{display:inline}
+  body.lang-en [data-en].block{display:block}
+
+  @media(max-width:480px){
+    .compare-box,.inbody-grid,.lab-grid,.barrier-grid{grid-template-columns:1fr}
+    .hero h1{font-size:21px}
+  }
+  @media print{body{background:#fff;padding:0}.progress-shell,.actions,.note,.lang-switch{display:none}.card,.hero{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="lang-switch">
+    <button id="btnAr" class="active" onclick="setLang('ar')">العربية</button>
+    <button id="btnEn" onclick="setLang('en')">English</button>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <span class="leaf">🔄</span>
+    <h1><span data-ar>إعادة تقييم — ملك شافعي</span><span data-en>Follow-up Reassessment — Malak Shafi</span></h1>
+    <p>
+      <span data-ar>جلسة المتابعة — مراجعة شاملة للوضع الحالي وإعادة ضبط الخطة</span>
+      <span data-en>Follow-up session — comprehensive review of current status and plan reset</span>
+    </p>
+    <div class="by">
+      <span data-ar>أ.د. رانده عبد الوهاب رضا مبروك — أستاذ ورئيس سابق ومؤسس وحدة التغذية الإكلينيكية — كلية الطب، جامعة عين شمس</span>
+      <span data-en>Prof. Randa Abd El-Wahab Reda Mabrouk — Professor & Founder, Clinical Nutrition Unit — Faculty of Medicine, Ain Shams University</span>
+    </div>
+  </div>
+
+  <!-- Baseline reminder -->
+  <div class="baseline-badge">
+    <div class="bb-icon">📋</div>
+    <div class="bb-text">
+      <strong><span data-ar>البيانات الأساسية من الجلسة الأولى (يونيو ٢٠٢٦)</span><span data-en>Baseline data from first session (June 2026)</span></strong>
+      <span data-ar>وزن: ٨٤ كجم | طول: ١٥٧ سم | BMI: ٣٤.١ | دهون: ٤٥٪ | عضلات: ٢٥.٨ كجم | HbA1c: ٥.٣٪ | InBody Score: ٦٢</span>
+      <span data-en>Weight: 84 kg | Height: 157 cm | BMI: 34.1 | Body fat: 45% | Muscle: 25.8 kg | HbA1c: 5.3% | InBody Score: 62</span>
+    </div>
+  </div>
+
+  <div class="progress-shell">
+    <div class="progress-track"><div class="progress-bar" id="bar"></div></div>
+    <div class="progress-label" id="prog"><span data-ar>يلا نبدأ ✨</span><span data-en>Let's begin ✨</span></div>
+  </div>
+
+  <form id="form" onsubmit="return false">
+
+  <!-- ══ 1. UPDATED MEASUREMENTS ══ -->
+  <div class="card">
+    <h2><span class="num">1</span> <span data-ar>القياسات الجديدة</span><span data-en>Updated Measurements</span></h2>
+    <p class="sub"><span data-ar>مقارنة بالزيارة الأولى يونيو ٢٠٢٦</span><span data-en>Compared to first visit June 2026</span></p>
+
+    <div class="row">
+      <div class="field">
+        <label><span data-ar>الوزن الحالي (كجم)</span><span data-en>Current weight (kg)</span></label>
+        <input type="number" id="w" name="الوزن_الحالي" step="0.1" data-ph-ar="مثلاً: ٨٢" data-ph-en="e.g. 82" oninput="calcBMI();calcChange()">
+        <div class="hint"><span data-ar>كان: ٨٤ كجم</span><span data-en>Was: 84 kg</span></div>
+      </div>
+      <div class="field">
+        <label><span data-ar>الطول (سم)</span><span data-en>Height (cm)</span></label>
+        <input type="number" id="h" name="الطول" value="157" step="0.5" oninput="calcBMI()">
+      </div>
+    </div>
+
+    <div class="field">
+      <label><span data-ar>محيط الخصر (سم)</span><span data-en>Waist circumference (cm)</span></label>
+      <input type="number" name="محيط_الخصر" step="0.5" data-ph-ar="اختياري" data-ph-en="Optional">
+    </div>
+
+    <!-- BMI live calc -->
+    <div class="bmi-box" id="bmiBox">
+      <div>
+        <div style="font-size:13px;color:var(--muted);font-weight:600;margin-bottom:4px">
+          <span data-ar>BMI الحالي</span><span data-en>Current BMI</span>
+        </div>
+        <div class="bmi-num" id="bmiNum">—</div>
+        <div class="bmi-label">
+          <span data-ar>كان: ٣٤.١</span><span data-en>Was: 34.1</span>
+        </div>
+      </div>
+      <div id="bmiTag" class="bmi-tag" style="background:var(--muted)">
+        <span data-ar>في انتظار البيانات</span><span data-en>Waiting for data</span>
+      </div>
+      <div id="weightChange" style="font-size:13px;font-weight:700;color:var(--muted);text-align:center;min-width:70px"></div>
+    </div>
+  </div>
+
+  <!-- ══ 2. INBODY COMPARISON ══ -->
+  <div class="card">
+    <h2><span class="num">2</span> <span data-ar>InBody — مقارنة</span><span data-en>InBody — Comparison</span></h2>
+    <p class="sub"><span data-ar>قديم (يونيو ٢٠٢٦) مقابل جديد — لاحظي أي تغيير في العضلات والدهون</span><span data-en>Old (June 2026) vs New — note any change in muscle and fat</span></p>
+
+    <div style="display:flex;gap:20px;justify-content:center;margin-bottom:8px;font-size:12px;font-weight:700;color:var(--muted)">
+      <span style="color:#c8b896">⬛ <span data-ar>قديم</span><span data-en>Previous</span></span>
+      <span style="color:var(--blush)">🔴 <span data-ar>جديد</span><span data-en>New</span></span>
+    </div>
+
+    <div class="inbody-grid">
+      <div class="ib-item">
+        <div class="ib-label"><span data-ar>كتلة العضلات (SMM) كجم</span><span data-en>Skeletal Muscle Mass (kg)</span></div>
+        <div class="ib-row">
+          <input class="old" type="number" step="0.1" value="25.8" disabled>
+          <input class="new" type="number" name="SMM_جديد" step="0.1" data-ph-ar="جديد" data-ph-en="New">
+        </div>
+      </div>
+      <div class="ib-item">
+        <div class="ib-label"><span data-ar>كتلة الدهون (BFM) كجم</span><span data-en>Body Fat Mass (kg)</span></div>
+        <div class="ib-row">
+          <input class="old" type="number" step="0.1" value="37.8" disabled>
+          <input class="new" type="number" name="دهون_جديد" step="0.1" data-ph-ar="جديد" data-ph-en="New">
+        </div>
+      </div>
+      <div class="ib-item">
+        <div class="ib-label"><span data-ar>نسبة الدهون ٪</span><span data-en>Body Fat %</span></div>
+        <div class="ib-row">
+          <input class="old" type="number" step="0.1" value="45.0" disabled>
+          <input class="new" type="number" name="نسبة_دهون_جديد" step="0.1" data-ph-ar="جديد" data-ph-en="New">
+        </div>
+      </div>
+      <div class="ib-item">
+        <div class="ib-label"><span data-ar>InBody Score</span><span data-en>InBody Score</span></div>
+        <div class="ib-row">
+          <input class="old" type="number" value="62" disabled>
+          <input class="new" type="number" name="InBody_Score_جديد" data-ph-ar="جديد" data-ph-en="New">
+        </div>
+      </div>
+      <div class="ib-item">
+        <div class="ib-label"><span data-ar>الماء في الجسم TBW (L)</span><span data-en>Total Body Water (L)</span></div>
+        <div class="ib-row">
+          <input class="old" type="number" step="0.1" value="33.9" disabled>
+          <input class="new" type="number" name="TBW_جديد" step="0.1" data-ph-ar="جديد" data-ph-en="New">
+        </div>
+      </div>
+      <div class="ib-item">
+        <div class="ib-label"><span data-ar>الدهون الحشوية</span><span data-en>Visceral Fat Level</span></div>
+        <div class="ib-row">
+          <input class="old" type="number" value="18" disabled>
+          <input class="new" type="number" name="دهون_حشوية_جديد" data-ph-ar="جديد" data-ph-en="New">
+        </div>
+      </div>
+    </div>
+
+    <div class="field" style="margin-top:14px">
+      <label><span data-ar>ملاحظات الطبيبة على InBody</span><span data-en>Doctor's notes on InBody results</span></label>
+      <textarea name="ملاحظات_InBody" data-ph-ar="مثلاً: نزل عضل مرة تانية — لازم نركز على البروتين" data-ph-en="e.g. Muscle loss again — need to focus on protein"></textarea>
+    </div>
+  </div>
+
+  <!-- ══ 3. MEDICATION REVIEW ══ -->
+  <div class="card">
+    <h2><span class="num">3</span> <span data-ar>مراجعة الأدوية</span><span data-en>Medication Review</span></h2>
+    <p class="sub"><span data-ar>أي تغيير في الأدوية منذ آخر زيارة؟</span><span data-en>Any change in medications since last visit?</span></p>
+
+    <div class="field">
+      <label><span data-ar>مونجارو — الوضع الحالي</span><span data-en>Mounjaro — current status</span></label>
+      <div class="chips blush">
+        <input type="radio" id="mj1" name="مونجارو" value="مستمرة/Still on it"><label for="mj1"><span data-ar>مستمرة ✅</span><span data-en>Still on it ✅</span></label>
+        <input type="radio" id="mj2" name="مونجارو" value="وقفت/Stopped"><label for="mj2"><span data-ar>وقفت ❌</span><span data-en>Stopped ❌</span></label>
+        <input type="radio" id="mj3" name="مونجارو" value="غيرت الجرعة/Dose changed"><label for="mj3"><span data-ar>غيرت الجرعة</span><span data-en>Dose changed</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label><span data-ar>الجرعة الحالية من مونجارو</span><span data-en>Current Mounjaro dose</span></label>
+      <input type="text" name="جرعة_مونجارو" data-ph-ar="مثلاً: ٥ ملجم" data-ph-en="e.g. 5 mg">
+    </div>
+
+    <div class="field">
+      <label><span data-ar>فيلوزاك — مستمرة؟</span><span data-en>Philozac — still taking?</span></label>
+      <div class="chips">
+        <input type="radio" id="ph1" name="فيلوزاك" value="نعم/Yes"><label for="ph1"><span data-ar>نعم</span><span data-en>Yes</span></label>
+        <input type="radio" id="ph2" name="فيلوزاك" value="لا/No"><label for="ph2"><span data-ar>لا</span><span data-en>No</span></label>
+        <input type="radio" id="ph3" name="فيلوزاك" value="تغيرت الجرعة/Dose changed"><label for="ph3"><span data-ar>تغيرت الجرعة</span><span data-en>Dose changed</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label><span data-ar>كويتكول، ميلجا، دول، ليمتليس — أي تغيير؟</span><span data-en>Quitcool, Milga, Dool, Limitless — any change?</span></label>
+      <textarea name="تغييرات_أدوية_أخرى" data-ph-ar="اكتبي أي تغيير أو دواء جديد أضيف" data-ph-en="Note any change or new medication added"></textarea>
+    </div>
+
+    <div class="field">
+      <label><span data-ar>أعراض جانبية جديدة؟</span><span data-en>Any new side effects?</span></label>
+      <textarea name="أعراض_جانبية" data-ph-ar="غثيان، إجهاد، أرق، وغيره" data-ph-en="Nausea, fatigue, insomnia, etc."></textarea>
+    </div>
+  </div>
+
+  <!-- ══ 4. ADHERENCE REVIEW ══ -->
+  <div class="card">
+    <h2><span class="num">4</span> <span data-ar>مراجعة الالتزام بالخطة السابقة</span><span data-en>Previous Plan Adherence Review</span></h2>
+    <p class="sub"><span data-ar>✅ التزمت بيه  |  ⚠️ أحياناً  |  ❌ صعب التطبيق</span><span data-en>✅ Followed  |  ⚠️ Sometimes  |  ❌ Hard to apply</span></p>
+
+    <div class="adh-list">
+      <div class="adh-item">
+        <label><span data-ar>توقيت وجبة قبل الكروس فت</span><span data-en>Pre-CrossFit meal timing</span></label>
+        <div class="adh-chips">
+          <input type="radio" id="a1y" name="التزام_قبل_التمرين" value="✅"><label for="a1y">✅</label>
+          <input type="radio" id="a1m" name="التزام_قبل_التمرين" value="⚠️"><label for="a1m">⚠️</label>
+          <input type="radio" id="a1n" name="التزام_قبل_التمرين" value="❌"><label for="a1n">❌</label>
+        </div>
+      </div>
+      <div class="adh-item">
+        <label><span data-ar>وجبة بعد التمرين خلال ٤٥ دقيقة</span><span data-en>Post-workout meal within 45 min</span></label>
+        <div class="adh-chips">
+          <input type="radio" id="a2y" name="التزام_بعد_التمرين" value="✅"><label for="a2y">✅</label>
+          <input type="radio" id="a2m" name="التزام_بعد_التمرين" value="⚠️"><label for="a2m">⚠️</label>
+          <input type="radio" id="a2n" name="التزام_بعد_التمرين" value="❌"><label for="a2n">❌</label>
+        </div>
+      </div>
+      <div class="adh-item">
+        <label><span data-ar>البروتين في كل وجبة</span><span data-en>Protein at every meal</span></label>
+        <div class="adh-chips">
+          <input type="radio" id="a3y" name="التزام_البروتين" value="✅"><label for="a3y">✅</label>
+          <input type="radio" id="a3m" name="التزام_البروتين" value="⚠️"><label for="a3m">⚠️</label>
+          <input type="radio" id="a3n" name="التزام_البروتين" value="❌"><label for="a3n">❌</label>
+        </div>
+      </div>
+      <div class="adh-item">
+        <label><span data-ar>الوجبة الرئيسية الساعة ٨ م</span><span data-en>Main meal at 8 PM</span></label>
+        <div class="adh-chips">
+          <input type="radio" id="a4y" name="التزام_توقيت_الوجبة" value="✅"><label for="a4y">✅</label>
+          <input type="radio" id="a4m" name="التزام_توقيت_الوجبة" value="⚠️"><label for="a4m">⚠️</label>
+          <input type="radio" id="a4n" name="التزام_توقيت_الوجبة" value="❌"><label for="a4n">❌</label>
+        </div>
+      </div>
+      <div class="adh-item">
+        <label><span data-ar>عدد أيام الكروس فت أسبوعياً</span><span data-en>CrossFit days per week</span></label>
+        <div class="adh-chips">
+          <input type="radio" id="a5y" name="التزام_الكروس_فت" value="✅ ٣-٤ أيام"><label for="a5y">✅</label>
+          <input type="radio" id="a5m" name="التزام_الكروس_فت" value="⚠️ أقل"><label for="a5m">⚠️</label>
+          <input type="radio" id="a5n" name="التزام_الكروس_فت" value="❌ وقفت"><label for="a5n">❌</label>
+        </div>
+      </div>
+      <div class="adh-item">
+        <label><span data-ar>شرب الماء ٨ أكواب يومياً</span><span data-en>Water intake 8 cups daily</span></label>
+        <div class="adh-chips">
+          <input type="radio" id="a6y" name="التزام_الماء" value="✅"><label for="a6y">✅</label>
+          <input type="radio" id="a6m" name="التزام_الماء" value="⚠️"><label for="a6m">⚠️</label>
+          <input type="radio" id="a6n" name="التزام_الماء" value="❌"><label for="a6n">❌</label>
+        </div>
+      </div>
+      <div class="adh-item">
+        <label><span data-ar>عشاء خفيف (بيض / زبادي / تونة)</span><span data-en>Light dinner (eggs / yogurt / tuna)</span></label>
+        <div class="adh-chips">
+          <input type="radio" id="a7y" name="التزام_العشاء" value="✅"><label for="a7y">✅</label>
+          <input type="radio" id="a7m" name="التزام_العشاء" value="⚠️"><label for="a7m">⚠️</label>
+          <input type="radio" id="a7n" name="التزام_العشاء" value="❌"><label for="a7n">❌</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="field" style="margin-top:14px">
+      <label><span data-ar>إيه أصعب حاجة في الخطة السابقة؟</span><span data-en>What was the hardest part of the previous plan?</span></label>
+      <textarea name="أصعب_حاجة" data-ph-ar="اكتبي بحرية" data-ph-en="Write freely"></textarea>
+    </div>
+  </div>
+
+  <!-- ══ 5. BARRIERS ══ -->
+  <div class="card">
+    <h2><span class="num">5</span> <span data-ar>أسباب عدم نزول الوزن</span><span data-en>Barriers to Weight Loss</span></h2>
+    <p class="sub"><span data-ar>اختاري كل اللي ينطبق</span><span data-en>Select all that apply</span></p>
+
+    <div class="barrier-grid">
+      <div class="barrier-chip">
+        <input type="checkbox" id="b1" name="أسباب" value="الوجبات معقدة/Meals too complex">
+        <label for="b1"><span data-ar>🍽️ الوجبات كانت معقدة</span><span data-en>🍽️ Meals too complex</span></label>
+      </div>
+      <div class="barrier-chip">
+        <input type="checkbox" id="b2" name="أسباب" value="الأكل العاطفي/Emotional eating">
+        <label for="b2"><span data-ar>💔 أكل عاطفي</span><span data-en>💔 Emotional eating</span></label>
+      </div>
+      <div class="barrier-chip">
+        <input type="checkbox" id="b3" name="أسباب" value="التوقيت صعب/Hard timing">
+        <label for="b3"><span data-ar>⏰ التوقيت صعب</span><span data-en>⏰ Hard to keep timing</span></label>
+      </div>
+      <div class="barrier-chip">
+        <input type="checkbox" id="b4" name="أسباب" value="وقفت كروس فت/Stopped CrossFit">
+        <label for="b4"><span data-ar>🏋️ وقفت الكروس فت</span><span data-en>🏋️ Stopped CrossFit</span></label>
+      </div>
+      <div class="barrier-chip">
+        <input type="checkbox" id="b5" name="أسباب" value="مونجارو غير شهية/Mounjaro reduced appetite too much">
+        <label for="b5"><span data-ar>💊 مونجارو قلل شهيتي جداً</span><span data-en>💊 Mounjaro reduced appetite too much</span></label>
+      </div>
+      <div class="barrier-chip">
+        <input type="checkbox" id="b6" name="أسباب" value="ظروف اجتماعية/Social occasions">
+        <label for="b6"><span data-ar>👥 مناسبات اجتماعية</span><span data-en>👥 Social occasions</span></label>
+      </div>
+      <div class="barrier-chip">
+        <input type="checkbox" id="b7" name="أسباب" value="ضغط شغل/Work stress">
+        <label for="b7"><span data-ar>💼 ضغط الشغل</span><span data-en>💼 Work stress</span></label>
+      </div>
+      <div class="barrier-chip">
+        <input type="checkbox" id="b8" name="أسباب" value="نوم زيادة/Excess sleep">
+        <label for="b8"><span data-ar>😴 نوم زيادة</span><span data-en>😴 Sleeping too much</span></label>
+      </div>
+      <div class="barrier-chip">
+        <input type="checkbox" id="b9" name="أسباب" value="الكميات غلط/Wrong portions">
+        <label for="b9"><span data-ar>📏 الكميات ما كانتش صح</span><span data-en>📏 Wrong portions</span></label>
+      </div>
+      <div class="barrier-chip">
+        <input type="checkbox" id="b10" name="أسباب" value="عدم تحضير مسبق/No meal prep">
+        <label for="b10"><span data-ar>🥘 ما حضرتش الأكل مسبقاً</span><span data-en>🥘 No meal prep</span></label>
+      </div>
+    </div>
+
+    <div class="field" style="margin-top:14px">
+      <label><span data-ar>أي سبب تاني ما ذكرناهوش؟</span><span data-en>Any other reason not listed above?</span></label>
+      <textarea name="سبب_آخر" data-ph-ar="اكتبي هنا" data-ph-en="Write here"></textarea>
+    </div>
+  </div>
+
+  <!-- ══ 6. CURRENT DIETARY INTAKE ══ -->
+  <div class="card">
+    <h2><span class="num">6</span> <span data-ar>النظام الغذائي الحالي</span><span data-en>Current Dietary Intake</span></h2>
+    <p class="sub"><span data-ar>ماذا تأكلين فعلياً الآن؟ — يوم عادي</span><span data-en>What are you actually eating now? — a typical day</span></p>
+
+    <div class="field">
+      <label><span data-ar>الفطار / أول وجبة — الوقت والمحتوى</span><span data-en>Breakfast / First meal — time and content</span></label>
+      <textarea name="الفطار_الحالي" data-ph-ar="مثلاً: ١٠ ص — بيض وجبنة وشاي" data-ph-en="e.g. 10 AM — eggs, cheese and tea"></textarea>
+    </div>
+    <div class="field">
+      <label><span data-ar>السناكس — ماذا تأكلين بين الوجبات؟</span><span data-en>Snacks — what do you eat between meals?</span></label>
+      <textarea name="السناكس_الحالية" data-ph-ar="مثلاً: فشار، فاكهة، زبادي" data-ph-en="e.g. popcorn, fruit, yogurt"></textarea>
+    </div>
+    <div class="field">
+      <label><span data-ar>الغداء / الوجبة الرئيسية — الوقت والمحتوى</span><span data-en>Lunch / Main meal — time and content</span></label>
+      <textarea name="الغداء_الحالي" data-ph-ar="مثلاً: ٢ م — فراخ مشوية ومكرونة وسلطة" data-ph-en="e.g. 2 PM — grilled chicken, pasta, salad"></textarea>
+    </div>
+    <div class="field">
+      <label><span data-ar>العشاء — الوقت والمحتوى</span><span data-en>Dinner — time and content</span></label>
+      <textarea name="العشاء_الحالي" data-ph-ar="مثلاً: ٩ م — زبادي وفاكهة" data-ph-en="e.g. 9 PM — yogurt and fruit"></textarea>
+    </div>
+    <div class="field">
+      <label><span data-ar>أكل ليلي بعد العشاء؟</span><span data-en>Late night eating after dinner?</span></label>
+      <div class="chips blush">
+        <input type="radio" id="ln1" name="أكل_ليلي" value="لا/No"><label for="ln1"><span data-ar>لا</span><span data-en>No</span></label>
+        <input type="radio" id="ln2" name="أكل_ليلي" value="أحياناً/Sometimes"><label for="ln2"><span data-ar>أحياناً</span><span data-en>Sometimes</span></label>
+        <input type="radio" id="ln3" name="أكل_ليلي" value="كل يوم/Daily"><label for="ln3"><span data-ar>كل يوم</span><span data-en>Daily</span></label>
+      </div>
+    </div>
+    <div class="field">
+      <label><span data-ar>الفاست فود — كم مرة أسبوعياً؟</span><span data-en>Fast food — how many times per week?</span></label>
+      <div class="chips">
+        <input type="radio" id="ff0" name="فاست_فود_حالي" value="لا/None"><label for="ff0"><span data-ar>لا</span><span data-en>None</span></label>
+        <input type="radio" id="ff1" name="فاست_فود_حالي" value="مرة/Once"><label for="ff1"><span data-ar>مرة</span><span data-en>Once</span></label>
+        <input type="radio" id="ff2" name="فاست_فود_حالي" value="مرتين/Twice"><label for="ff2"><span data-ar>مرتين</span><span data-en>Twice</span></label>
+        <input type="radio" id="ff3" name="فاست_فود_حالي" value="أكثر/More"><label for="ff3"><span data-ar>أكثر</span><span data-en>More</span></label>
+      </div>
+    </div>
+    <div class="field">
+      <label><span data-ar>الأكل العاطفي — هل زاد؟</span><span data-en>Emotional eating — has it increased?</span></label>
+      <div class="chips blush">
+        <input type="radio" id="ee1" name="أكل_عاطفي_حالي" value="نعم زاد/Yes increased"><label for="ee1"><span data-ar>نعم، زاد</span><span data-en>Yes, increased</span></label>
+        <input type="radio" id="ee2" name="أكل_عاطفي_حالي" value="نفس/Same"><label for="ee2"><span data-ar>نفس</span><span data-en>Same</span></label>
+        <input type="radio" id="ee3" name="أكل_عاطفي_حالي" value="قل/Decreased"><label for="ee3"><span data-ar>قل</span><span data-en>Decreased</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 7. LIFESTYLE & ACTIVITY ══ -->
+  <div class="card">
+    <h2><span class="num">7</span> <span data-ar>نمط الحياة والنشاط</span><span data-en>Lifestyle & Activity</span></h2>
+    <p class="sub"><span data-ar>أي تغييرات منذ آخر زيارة؟</span><span data-en>Any changes since last visit?</span></p>
+
+    <div class="field">
+      <label><span data-ar>الكروس فت — عدد الأيام حالياً أسبوعياً</span><span data-en>CrossFit — current days per week</span></label>
+      <div class="chips">
+        <input type="radio" id="cf0" name="أيام_كروس_فت_حالي" value="وقفت نهائياً/Stopped"><label for="cf0"><span data-ar>وقفت</span><span data-en>Stopped</span></label>
+        <input type="radio" id="cf1" name="أيام_كروس_فت_حالي" value="١-٢ أيام/1-2 days"><label for="cf1"><span data-ar>١-٢</span><span data-en>1-2</span></label>
+        <input type="radio" id="cf2" name="أيام_كروس_فت_حالي" value="٣-٤ أيام/3-4 days"><label for="cf2"><span data-ar>٣-٤</span><span data-en>3-4</span></label>
+        <input type="radio" id="cf3" name="أيام_كروس_فت_حالي" value="٥+ أيام/5+ days"><label for="cf3"><span data-ar>٥+</span><span data-en>5+</span></label>
+      </div>
+    </div>
+    <div class="field">
+      <label><span data-ar>هل أضفتِ أي نشاط آخر (مشي، بيلاتس، غيره)؟</span><span data-en>Added any other activity (walking, pilates, etc.)?</span></label>
+      <input type="text" name="نشاط_إضافي" data-ph-ar="اكتبي النوع والتكرار" data-ph-en="Write type and frequency">
+    </div>
+    <div class="field">
+      <label><span data-ar>طبيعة العمل — هل تغيرت؟</span><span data-en>Work setup — any change?</span></label>
+      <div class="chips">
+        <input type="radio" id="wk1" name="طبيعة_العمل_حالي" value="مكتبي/Office"><label for="wk1"><span data-ar>مكتبي</span><span data-en>Office</span></label>
+        <input type="radio" id="wk2" name="طبيعة_العمل_حالي" value="من البيت/From home"><label for="wk2"><span data-ar>من البيت</span><span data-en>From home</span></label>
+        <input type="radio" id="wk3" name="طبيعة_العمل_حالي" value="هجين/Hybrid"><label for="wk3"><span data-ar>هجين</span><span data-en>Hybrid</span></label>
+      </div>
+    </div>
+    <div class="field">
+      <label><span data-ar>النوم — كام ساعة؟</span><span data-en>Sleep — how many hours?</span></label>
+      <div class="chips">
+        <input type="radio" id="sl1" name="النوم_حالي" value="أقل من ٦/Less than 6"><label for="sl1"><span data-ar>أقل من ٦</span><span data-en>Less than 6</span></label>
+        <input type="radio" id="sl2" name="النوم_حالي" value="٦-٧/6-7"><label for="sl2"><span data-ar>٦-٧</span><span data-en>6-7</span></label>
+        <input type="radio" id="sl3" name="النوم_حالي" value="٨+/8+"><label for="sl3"><span data-ar>٨+</span><span data-en>8+</span></label>
+        <input type="radio" id="sl4" name="النوم_حالي" value="نوم زيادة جداً/Oversleeping"><label for="sl4"><span data-ar>نوم زيادة جداً</span><span data-en>Oversleeping</span></label>
+      </div>
+    </div>
+    <div class="field">
+      <label><span data-ar>مستوى التوتر والضغط النفسي</span><span data-en>Stress & psychological pressure level</span></label>
+      <div class="chips blush">
+        <input type="radio" id="st1" name="التوتر_حالي" value="منخفض/Low"><label for="st1"><span data-ar>منخفض 😌</span><span data-en>Low 😌</span></label>
+        <input type="radio" id="st2" name="التوتر_حالي" value="متوسط/Moderate"><label for="st2"><span data-ar>متوسط 😐</span><span data-en>Moderate 😐</span></label>
+        <input type="radio" id="st3" name="التوتر_حالي" value="عالي/High"><label for="st3"><span data-ar>عالي 😰</span><span data-en>High 😰</span></label>
+        <input type="radio" id="st4" name="التوتر_حالي" value="شديد جداً/Very high"><label for="st4"><span data-ar>شديد جداً 🆘</span><span data-en>Very high 🆘</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 8. SYSTEMIC SYMPTOMS ══ -->
+  <div class="card">
+    <h2><span class="num">8</span> <span data-ar>الأعراض والحالة الصحية</span><span data-en>Symptoms & Health Status</span></h2>
+    <p class="sub"><span data-ar>أي تغييرات في الصحة العامة منذ آخر زيارة؟</span><span data-en>Any health changes since last visit?</span></p>
+
+    <div class="field">
+      <label><span data-ar>القولون الحساس — الوضع الحالي</span><span data-en>IBS — current status</span></label>
+      <div class="chips">
+        <input type="radio" id="ibs1" name="القولون_حالي" value="تحسن/Improved"><label for="ibs1"><span data-ar>تحسن ✅</span><span data-en>Improved ✅</span></label>
+        <input type="radio" id="ibs2" name="القولون_حالي" value="نفس/Same"><label for="ibs2"><span data-ar>نفس</span><span data-en>Same</span></label>
+        <input type="radio" id="ibs3" name="القولون_حالي" value="ساء/Worsened"><label for="ibs3"><span data-ar>ساء ❌</span><span data-en>Worsened ❌</span></label>
+      </div>
+    </div>
+    <div class="field">
+      <label><span data-ar>الطاقة والإجهاد خلال اليوم</span><span data-en>Energy and fatigue during the day</span></label>
+      <div class="chips blush">
+        <input type="radio" id="en1" name="الطاقة_حالي" value="طاقة كويسة/Good energy"><label for="en1"><span data-ar>كويسة ⚡</span><span data-en>Good ⚡</span></label>
+        <input type="radio" id="en2" name="الطاقة_حالي" value="متوسطة/Moderate"><label for="en2"><span data-ar>متوسطة</span><span data-en>Moderate</span></label>
+        <input type="radio" id="en3" name="الطاقة_حالي" value="تعب وإجهاد/Fatigue"><label for="en3"><span data-ar>تعب وإجهاد 😔</span><span data-en>Fatigue 😔</span></label>
+      </div>
+    </div>
+    <div class="field">
+      <label><span data-ar>الدورة الشهرية — أي تغييرات؟</span><span data-en>Menstrual cycle — any changes?</span></label>
+      <div class="chips">
+        <input type="radio" id="mc1" name="الدورة_حالي" value="منتظمة/Regular"><label for="mc1"><span data-ar>منتظمة ✅</span><span data-en>Regular ✅</span></label>
+        <input type="radio" id="mc2" name="الدورة_حالي" value="غير منتظمة/Irregular"><label for="mc2"><span data-ar>غير منتظمة</span><span data-en>Irregular</span></label>
+        <input type="radio" id="mc3" name="الدورة_حالي" value="تغير/Changed"><label for="mc3"><span data-ar>فيه تغيير</span><span data-en>Changed</span></label>
+      </div>
+    </div>
+    <div class="field">
+      <label><span data-ar>أعراض أخرى جديدة تريد ذكرها</span><span data-en>Any other new symptoms to mention</span></label>
+      <textarea name="أعراض_أخرى" data-ph-ar="صداع، إمساك، انتفاخ، وغيره" data-ph-en="Headache, constipation, bloating, etc."></textarea>
+    </div>
+  </div>
+
+  <!-- ══ 9. LAB WORK ══ -->
+  <div class="card">
+    <h2><span class="num">9</span> <span data-ar>التحاليل المطلوبة / النتائج الجديدة</span><span data-en>Lab Work — New Results</span></h2>
+    <p class="sub"><span data-ar>إذا أجرت تحاليل — أدخلي النتائج الجديدة</span><span data-en>If labs were done — enter new results here</span></p>
+
+    <div class="lab-grid">
+      <div class="lab-item">
+        <div class="lab-name">HbA1c %</div>
+        <div class="lab-prev"><span data-ar>كانت:</span><span data-en>Was:</span> 5.3%</div>
+        <input type="text" name="HbA1c_جديد" data-ph-ar="الجديد" data-ph-en="New result">
+      </div>
+      <div class="lab-item">
+        <div class="lab-name"><span data-ar>صورة دم CBC</span><span data-en>CBC</span></div>
+        <div class="lab-prev"><span data-ar>—</span></div>
+        <input type="text" name="CBC_جديد" data-ph-ar="ملاحظات" data-ph-en="Notes">
+      </div>
+      <div class="lab-item">
+        <div class="lab-name"><span data-ar>كوليسترول كلي / ثلاثي</span><span data-en>Cholesterol / Triglycerides</span></div>
+        <div class="lab-prev"><span data-ar>—</span></div>
+        <input type="text" name="كوليسترول_جديد" data-ph-ar="النتائج" data-ph-en="Results">
+      </div>
+      <div class="lab-item">
+        <div class="lab-name"><span data-ar>فيتامين D</span><span data-en>Vitamin D</span></div>
+        <div class="lab-prev"><span data-ar>—</span></div>
+        <input type="text" name="فيتامين_D_جديد" data-ph-ar="النتيجة" data-ph-en="Result">
+      </div>
+      <div class="lab-item">
+        <div class="lab-name"><span data-ar>حديد / فيريتين</span><span data-en>Iron / Ferritin</span></div>
+        <div class="lab-prev"><span data-ar>—</span></div>
+        <input type="text" name="حديد_جديد" data-ph-ar="النتيجة" data-ph-en="Result">
+      </div>
+      <div class="lab-item">
+        <div class="lab-name"><span data-ar>TSH — الغدة الدرقية</span><span data-en>TSH — Thyroid</span></div>
+        <div class="lab-prev"><span data-ar>—</span></div>
+        <input type="text" name="TSH_جديد" data-ph-ar="النتيجة" data-ph-en="Result">
+      </div>
+      <div class="lab-item">
+        <div class="lab-name">B12</div>
+        <div class="lab-prev"><span data-ar>—</span></div>
+        <input type="text" name="B12_جديد" data-ph-ar="النتيجة" data-ph-en="Result">
+      </div>
+      <div class="lab-item">
+        <div class="lab-name"><span data-ar>وظائف الكبد / الكلى</span><span data-en>Liver / Kidney function</span></div>
+        <div class="lab-prev"><span data-ar>—</span></div>
+        <input type="text" name="كبد_كلى_جديد" data-ph-ar="ملاحظات" data-ph-en="Notes">
+      </div>
+    </div>
+
+    <div class="field" style="margin-top:14px">
+      <label><span data-ar>ملاحظات الطبيبة على التحاليل</span><span data-en>Doctor's notes on lab results</span></label>
+      <textarea name="ملاحظات_تحاليل" data-ph-ar="أي نقص أو تغيير يؤثر على الخطة" data-ph-en="Any deficiency or change affecting the plan"></textarea>
+    </div>
+  </div>
+
+  <!-- ══ 10. GOAL RESET & MOTIVATION ══ -->
+  <div class="card">
+    <h2><span class="num">10</span> <span data-ar>إعادة تحديد الهدف والدافع</span><span data-en>Goal Reset & Motivation</span></h2>
+    <p class="sub"><span data-ar>ملك بدأت من جديد — نحدد الهدف بوضوح</span><span data-en>Malak is starting fresh — let's set a clear goal</span></p>
+
+    <div class="field">
+      <label><span data-ar>الهدف الأساسي من هذه الجلسة</span><span data-en>Main goal for this session</span></label>
+      <div class="chips blush">
+        <input type="radio" id="g1" name="الهدف_الجديد" value="إنقاص وزن/Weight loss"><label for="g1"><span data-ar>إنقاص وزن ⚖️</span><span data-en>Weight loss ⚖️</span></label>
+        <input type="radio" id="g2" name="الهدف_الجديد" value="بناء عضل/Muscle building"><label for="g2"><span data-ar>بناء عضل 💪</span><span data-en>Muscle building 💪</span></label>
+        <input type="radio" id="g3" name="الهدف_الجديد" value="صحة عامة/General health"><label for="g3"><span data-ar>صحة عامة 🌿</span><span data-en>General health 🌿</span></label>
+        <input type="radio" id="g4" name="الهدف_الجديد" value="طاقة أفضل/More energy"><label for="g4"><span data-ar>طاقة أفضل ⚡</span><span data-en>More energy ⚡</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label><span data-ar>وزن الهدف المطلوب الوصول إليه (كجم)</span><span data-en>Target weight (kg)</span></label>
+      <input type="number" name="هدف_الوزن" step="0.5" data-ph-ar="مثلاً: ٦٠" data-ph-en="e.g. 60">
+      <div class="hint"><span data-ar>الهدف السابق: ٦٠ كجم</span><span data-en>Previous target: 60 kg</span></div>
+    </div>
+
+    <div class="field">
+      <label><span data-ar>ما الذي سيجعل هذه المرة مختلفة في نظرك؟</span><span data-en>What will make this time different for you?</span></label>
+      <textarea name="مختلف_هذه_المرة" data-ph-ar="اكتبي بحرية" data-ph-en="Write freely"></textarea>
+    </div>
+
+    <div class="field">
+      <label><span data-ar>ما الخطة الأبسط التي تقدرين تلتزمي بها؟</span><span data-en>What's the simplest plan you can realistically stick to?</span></label>
+      <textarea name="خطة_بسيطة" data-ph-ar="مثلاً: وجبتان يومياً + ٣ أيام كروس فت" data-ph-en="e.g. 2 meals daily + 3 CrossFit days"></textarea>
+    </div>
+
+    <!-- Mood meter -->
+    <div class="field">
+      <label><span data-ar>كيف تشعرين الآن؟</span><span data-en>How are you feeling right now?</span></label>
+      <div class="mood-meter" id="moodMeter">
+        <button type="button" class="mood-btn" data-val="😞 محبطة/Frustrated" onclick="setMood(this)">😞</button>
+        <button type="button" class="mood-btn" data-val="😐 محايدة/Neutral" onclick="setMood(this)">😐</button>
+        <button type="button" class="mood-btn" data-val="🙂 متفائلة/Hopeful" onclick="setMood(this)">🙂</button>
+        <button type="button" class="mood-btn" data-val="😊 متحمسة/Motivated" onclick="setMood(this)">😊</button>
+        <button type="button" class="mood-btn" data-val="🔥 مصممة/Determined" onclick="setMood(this)">🔥</button>
+      </div>
+      <input type="hidden" name="الحالة_النفسية" id="moodInput">
+    </div>
+
+    <div class="field">
+      <label><span data-ar>ملاحظات الطبيبة للخطة الجديدة</span><span data-en>Doctor's notes for the new plan</span></label>
+      <textarea name="ملاحظات_الطبيبة" data-ph-ar="توجيهات خاصة بناءً على نتائج جلسة اليوم" data-ph-en="Special directives based on today's session findings"></textarea>
+    </div>
+  </div>
+
+  </form>
+
+  <!-- ACTIONS -->
+  <div class="actions">
+    <button type="button" class="btn btn-wa" onclick="sendWhatsApp()">📲 <span data-ar>إرسال نتائج التقييم على الواتساب</span><span data-en>Send Reassessment via WhatsApp</span></button>
+    <button type="button" class="btn btn-mail" onclick="sendEmail()">✉️ <span data-ar>إرسال على الإيميل</span><span data-en>Send via Email</span></button>
+    <button type="button" class="btn btn-print" onclick="window.print()">🖨️ <span data-ar>حفظ / طباعة PDF</span><span data-en>Save / Print PDF</span></button>
+    <p class="note"><span data-ar>بعد ما تخلصي، ابعتي النتائج لدكتورتك عشان تبني عليها الخطة الجديدة 💚</span><span data-en>When done, send the results to your doctor to build the new plan on 💚</span></p>
+  </div>
+
+  <footer>
+    <span data-ar>أ.د / <b>رانده عبد الوهاب رضا مبروك</b><br>أستاذ ورئيس سابق ومؤسس وحدة التغذية الإكلينيكية — كلية الطب، جامعة عين شمس</span>
+    <span data-en>Prof. <b>Randa Abd El-Wahab Reda Mabrouk</b><br>Professor & Founder, Clinical Nutrition Unit — Faculty of Medicine, Ain Shams University</span>
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+  const form = document.getElementById('form');
+  const fields = form.querySelectorAll('input:not([type=hidden]), textarea, select');
+  let currentLang = 'ar';
+
+  function setLang(lang){
+    currentLang = lang;
+    document.body.classList.toggle('lang-en', lang==='en');
+    document.getElementById('htmlRoot').setAttribute('lang', lang);
+    document.getElementById('htmlRoot').setAttribute('dir', lang==='ar'?'rtl':'ltr');
+    document.getElementById('btnAr').classList.toggle('active', lang==='ar');
+    document.getElementById('btnEn').classList.toggle('active', lang==='en');
+    document.querySelectorAll('[data-ph-ar]').forEach(el=>{
+      el.placeholder = lang==='ar' ? el.getAttribute('data-ph-ar') : el.getAttribute('data-ph-en');
+    });
+    updateProgress();
+  }
+
+  function setMood(btn){
+    document.querySelectorAll('.mood-btn').forEach(b=>b.classList.remove('selected'));
+    btn.classList.add('selected');
+    document.getElementById('moodInput').value = btn.getAttribute('data-val');
+    updateProgress();
+  }
+
+  function calcBMI(){
+    const w = parseFloat(document.getElementById('w').value);
+    const h = parseFloat(document.getElementById('h').value)/100;
+    const num = document.getElementById('bmiNum');
+    const tag = document.getElementById('bmiTag');
+    if(w>0 && h>0){
+      const bmi = w/(h*h);
+      num.textContent = bmi.toFixed(1);
+      let t,c;
+      if(bmi<18.5){t=currentLang==='ar'?'نقص في الوزن':'Underweight';c='#7aa6c2';}
+      else if(bmi<25){t=currentLang==='ar'?'وزن مثالي 🌿':'Healthy weight 🌿';c='#5c6b4a';}
+      else if(bmi<30){t=currentLang==='ar'?'زيادة في الوزن':'Overweight';c='#c8a35b';}
+      else{t=currentLang==='ar'?'سمنة':'Obesity';c='#d98a73';}
+      tag.textContent=t; tag.style.background=c;
+    } else {
+      num.textContent='—';
+      tag.textContent=currentLang==='ar'?'في انتظار البيانات':'Waiting for data';
+      tag.style.background='var(--muted)';
+    }
+  }
+
+  function calcChange(){
+    const w = parseFloat(document.getElementById('w').value);
+    const div = document.getElementById('weightChange');
+    if(w>0){
+      const diff = (w - 84).toFixed(1);
+      const sign = diff>0?'+':'';
+      const color = diff<0?'#5c6b4a':diff>0?'#d98a73':'var(--muted)';
+      const emoji = diff<0?'📉':diff>0?'📈':'➡️';
+      div.innerHTML = `<span style="color:${color};font-size:16px;">${emoji}</span><br><span style="color:${color}">${sign}${diff} kg</span>`;
+    } else {
+      div.innerHTML='';
+    }
+  }
+
+  function updateProgress(){
+    const groups = {};
+    fields.forEach(f=>{
+      if(f.type==='radio'||f.type==='checkbox'){
+        groups[f.name] = groups[f.name] || (form.querySelector('[name="'+CSS.escape(f.name)+'"]:checked')!=null);
+      } else {
+        groups[f.name] = f.value.trim()!=='';
+      }
+    });
+    // also check mood
+    if(document.getElementById('moodInput').value) groups['mood']=true;
+    const keys=Object.keys(groups), done=keys.filter(k=>groups[k]).length;
+    const pct=Math.round(done/keys.length*100);
+    document.getElementById('bar').style.width=pct+'%';
+    const lbl=document.getElementById('prog');
+    const msgs = currentLang==='ar' ? {
+      0:'يلا نبدأ التقييم ✨',
+      mid:(p)=>'ماشيين كويس 💪 ('+p+'%)',
+      near:(p)=>'قربنا نخلّص! ('+p+'%)',
+      done:'تمام كده، كل البيانات جاهزة 🎉'
+    } : {
+      0:"Let's begin the reassessment ✨",
+      mid:(p)=>'Great progress 💪 ('+p+'%)',
+      near:(p)=>'Almost done! ('+p+'%)',
+      done:"All data complete, ready to send 🎉"
+    };
+    if(pct===0) lbl.textContent=msgs[0];
+    else if(pct<50) lbl.textContent=msgs.mid(pct);
+    else if(pct<100) lbl.textContent=msgs.near(pct);
+    else lbl.textContent=msgs.done;
+  }
+
+  function buildText(){
+    const data={};
+    fields.forEach(f=>{
+      if(f.type==='radio'){ if(f.checked) data[f.name]=f.value; }
+      else if(f.type==='checkbox'){ if(f.checked){ data[f.name]=(data[f.name]?data[f.name]+'، ':'')+f.value; } }
+      else if(f.value.trim()!==''){ data[f.name]=f.value.trim(); }
+    });
+    const mood = document.getElementById('moodInput').value;
+    if(mood) data['الحالة_النفسية']=mood;
+    const bmi=document.getElementById('bmiNum').textContent;
+    const title = currentLang==='ar'
+      ? '🔄 إعادة تقييم — ملك شافعي\n— — — — — — — — —'
+      : '🔄 Reassessment — Malak Shafi\n— — — — — — — — —';
+    let txt=title+'\n';
+    for(const k in data){ txt+='• '+k.replace(/_/g,' ')+': '+data[k]+'\n'; }
+    if(bmi!=='—') txt+='• BMI الجديد / New BMI: '+bmi+'\n';
+    txt+='\n— — —\n';
+    txt+= currentLang==='ar'
+      ? 'أ.د. رانده عبد الوهاب رضا مبروك — كلية الطب، جامعة عين شمس'
+      : 'Prof. Randa Abd El-Wahab Reda Mabrouk — Faculty of Medicine, Ain Shams University';
+    return txt;
+  }
+
+  function sendWhatsApp(){
+    window.open('https://wa.me/?text='+encodeURIComponent(buildText()),'_blank');
+  }
+  function sendEmail(){
+    const subj = currentLang==='ar'?'إعادة تقييم — ملك شافعي':'Reassessment — Malak Shafi';
+    window.location.href='mailto:randareda@gmail.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(buildText());
+  }
+
+  fields.forEach(f=>{
+    f.addEventListener('input',()=>{ updateProgress(); calcBMI(); calcChange(); });
+    f.addEventListener('change',()=>{ updateProgress(); calcBMI(); calcChange(); });
+  });
+
+  setLang('ar');
+</script>
+</body>
+</html>
